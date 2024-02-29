@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap');
+
+
+*, *::before, *::after {
+    margin: 0;
+    box-sizing: border-box;
+
+  }
+  
+  @-webkit-keyframes rotate {
+    100% {
+      transform: rotate(-1turn);
+    }
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(-1turn);
+    }
+  }
+
+
+  .conic {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    /* background: #000; */
+    background-image: url('https://static.wixstatic.com/media/4fb926_88ed54b0addf498f93167cf4e1966db8~mv2.png');
+    background-size: 290px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 50px;
+
+  }
+  .conic::before, .conic::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    background: #333;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: conic-gradient(transparent, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff, transparent 20%, transparent 100%);
+    -webkit-animation: rotate 4s linear infinite;
+            animation: rotate 4s linear infinite;
+    z-index: -1;
+  }
+  .conic::after {
+    background: none;
+    background-image: conic-gradient(transparent, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff, transparent 20%, transparent 100%);
+    filter: blur(10px);
+  }
+  
+  .all::before, .all::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    background: #333;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: conic-gradient(#ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff);
+    -webkit-animation: rotate 4s linear infinite;
+            animation: rotate 4s linear infinite;
+    z-index: -1;
+  }
+  .all::after {
+    background: none;
+    background-image: conic-gradient(#ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff);
+    filter: blur(10px);
+  }
+  
+  .rect {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    background: #000;
+    margin: 50px;
+    overflow: unset;
+  }
+  .rect::before, .rect::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    background: #333;
+    background-image: linear-gradient(45deg, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff, #ff3c41, #ff8a25, #ffe04f, #4fff88, #56ffef, #37b4ff, #c05aff);
+    background-size: 500%;
+    -webkit-animation: position 12s linear infinite alternate;
+            animation: position 12s linear infinite alternate;
+    z-index: -1;
+  }
+  .rect::after {
+    filter: blur(10px);
+  }
+  
+  @-webkit-keyframes position {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  @keyframes position {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  body {
+    background-image: url('..\src\components\codepen\grunge1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.App {
+  display: flex;
+    width: 85vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.configurator {
+    position: fixed;
+    right: 0;
+    width: 20vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    max-width: 400px;
+    padding: 16px;
+    gap: 32px;
+}
+
+.configurator__section__title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-top: 24px;
+    color: white;
+    padding: 16px;
+}
+
+.configurator__section__values {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.item {
+    transition: .4s opacity;
+}
+
+.item__label {
+    font-size: 12px;
+    color: #acacac;
+    transition: 0.4s color;
+}
+
+.item:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    
+}
+
+.item.item--active .item__label {
+    color: rgb(0, 110, 255);
+}
+
+.color {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    mix-blend-mode: multiply;
+}
+
+.color-input {
+    background: #fff;
+    border: 1px #ccc solid;
+    border-radius: 2px;
+    padding: 0.2em;
+}
+
+.vehicle_title {
+    position: fixed;
+    left: 24px;
+    width: 320px;
+    bottom: 65vh;
+    color: white;
+    padding: 16px;
+    gap: 32px;
+}
+
+.vehicle_section {
+    position: fixed;
+    left: 24px;
+    width: 220px;
+    bottom: 55vh;
+    color: black;
+border-radius: 10%;
+    padding: 0px;
+    gap: 32px;
+
+}
+
+.button {
+  
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #001eff 100% );
+  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);
+  padding: 10 32px;
+  margin-top: 30px;
+  margin-left: 10px;
+  border-radius: 6px;
+  color: #ffffff;
+  height: 48px;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease,transform 0.15s ease;
+  justify-items: center;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.button:hover {
+  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;
+  transform: translateY(-2px);
+}
+.button:active{
+  box-shadow: inset 0px 3px 7px #3c4fe0;
+  transform: translateY(2px);
+}
