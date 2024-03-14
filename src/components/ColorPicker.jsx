@@ -1,32 +1,40 @@
 import React from 'react';
-import { HuePicker } from 'react-color';
+import { SliderPicker } from 'react-color';
 import { proxy, useSnapshot } from 'valtio';
 
 export const state = proxy({
-    hue: 0, // Initialize hue to 0
-    base: { BaseMtl: "white" },
+    base: { BaseMtl: "#ffffff" }, // Initialize BaseMtl color
 });
 
 const ColorPicker = () => {
     const snap = useSnapshot(state);
 
-    const handleHueChange = (color) => {
-        state.hue = color.hsl.h; // Update the hue in the state
-        state.base.BaseMtl = `hsl(${color.hsl.h}, 100%, 50%)`; // Update the BaseMtl color
-    };
-
-    const resetHue = () => {
-        state.hue = 0; // Reset the hue to 0
-        state.base.BaseMtl = `hsl(0, 100%, 100%)`; // Reset the BaseMtl color
+    const resetColor = () => {
+        state.base.BaseMtl = '#ffffff'; // Reset the BaseMtl color
     };
 
     return (
         <div>
-            <HuePicker
-                color={snap.base.BaseMtl}
-                onChange={handleHueChange}
-                direction="horizontal" />
-            <button className='button' onClick={resetHue}>Reset Color</button>
+            
+            <div className='current-color'>
+                <span>Change Color:    </span>
+                
+                <input 
+                    type="color" 
+                    id="colorpicker" 
+                    value={snap.base.BaseMtl} // Use the current color
+                    onChange={(e) => (state.base.BaseMtl = e.target.value)} // Update the color on change
+                />
+                {snap.base.BaseMtl}
+
+                <button className='button'  onClick={resetColor}>Reset Original Color</button>
+            </div>
+            
+            <div className='color-hex'>
+                    
+                    
+                </div>
+            
         </div>
     );
 };
