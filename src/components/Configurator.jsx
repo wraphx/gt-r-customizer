@@ -66,6 +66,9 @@ const Configurator = () => {
                         getOptionValue={(option) => option.value}                        
                     />
                     <div className='picker-color'>
+                    <div className='configurator__section__title'>
+                    Change Vehicle Color
+                </div>
                          <ColorPicker />
                          </div>
                 </div>                        
