@@ -17,37 +17,13 @@ export function GTR(props) {
 
     materialNodes.forEach((material) => {
       if (material && material.color && material.color.equals(new THREE.Color(snap1.base.BaseMtl))) {
-        switch (snap1.current) {
-          case 'pink':
-            applyCustomBlending(material, 0xFFC0CB); // Pink color
-            break;
-          case 'red':
-            applyCustomBlending(material, 0xFF0000); // Red color
-            break;
-          case 'blue':
-            applyCustomBlending(material, 0x0000FF); // Blue color
-            break;
-          case 'green':
-            applyCustomBlending(material, 0x00FF00); // Green color
-            break;
-          case 'yellow':
-            applyCustomBlending(material, 0xFFFF00); // Yellow color
-            break;
-          case 'purple':
-            applyCustomBlending(material, 0x800080); // Purple color
-            break;
-          case 'grey':
-            applyCustomBlending(material, 0x808080); // Grey color
-            break;
-          default:
-            break;
-        }
+        applyCustomBlending(material); // Apply custom blending mode to every material
       }
     });
-  }, [snap1.current, snap1.base.BaseMtl, nodes, materials]);
+  }, [snap1.base.BaseMtl, nodes, materials]);
 
-  const applyCustomBlending = (material, hueColor) => {
-    // Set the blending mode
+  const applyCustomBlending = (material) => {
+    // Set the blending mode to Hue
     material.blending = THREE.CustomBlending;
     material.blendEquation = THREE.AddEquation;
     material.blendSrc = THREE.SrcAlphaFactor;
@@ -55,31 +31,13 @@ export function GTR(props) {
     material.blendSrcAlpha = THREE.SrcAlphaFactor;
     material.blendDstAlpha = THREE.OneMinusSrcAlphaFactor;
     material.blendEquationAlpha = THREE.AddEquation;
+    material.blendMode = THREE.ScreenBlending; // Set blending mode to Hue
     material.depthWrite = false;
-  
-    // Calculate the blended color
-    const existingColor = material.color.clone();
-    const blendedColor = blendColors(existingColor, hueColor);
-  
-    // Apply the blended color
-    material.color = blendedColor;
   };
-  
-  // Function to blend two colors in a "Hue" blending mode
-  const blendColors = (color1, color2) => {
-    const hsv1 = new THREE.Color(color1).getHSL();
-    const hsv2 = new THREE.Color(color2).getHSL();
-  
-    // Blend the hue of the two colors
-    const blendedHue = hsv2.h;
-    const blendedColor = new THREE.Color().setHSL(blendedHue, hsv1.s, hsv1.l);
-  
-    return blendedColor;
-  };
-  
 
   return (
     <group {...props} dispose={null}>
+      
       <mesh geometry={nodes.Body.geometry} material={materials.BaseMtl} material-color={snap1.base.BaseMtl} visible={overlay === 1}/>
       <mesh geometry={nodes.Body001.geometry} material={materials.Slaughter} material-color={snap1.base.BaseMtl} visible={overlay === 2}/>
       <mesh geometry={nodes.Body002.geometry} material={materials.BatLady} material-color={snap1.base.BaseMtl} visible={overlay === 3}/>
