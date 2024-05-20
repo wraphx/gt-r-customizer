@@ -375,9 +375,9 @@ body {
   }
   .container .btn:nth-child(1)::before, /* Button 1 */
   .container .btn:nth-child(1)::after {
-    background: #ffaecc;
-    box-shadow: 0 0 5px #ffaecc, 0 0 15px #ffaecc, 0 0 30px #ffaecc,
-      0 0 60px #ffaecc;
+    background: #fc9700;
+    box-shadow: 0 0 5px #fc9700, 0 0 15px #fc9700, 0 0 30px #fc9700,
+      0 0 60px #fc9700;
   }
   .container .btn:nth-child(2)::before, /* Button 2 */
   .container .btn:nth-child(2)::after {
@@ -507,6 +507,10 @@ body {
   
   .glowing-btn:hover:after {
     opacity: 1;
+  }
+
+  .texture-images{
+    display: none;
   }
   
   @keyframes faulty-flicker {

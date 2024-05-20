@@ -2,6 +2,7 @@ import { useCustomization } from '../context/Customization';
 import Select, { components } from 'react-select';
 import '../App.css';
 import ColorPicker from './ColorPicker';
+import TexturePaths from './TexturePaths';
 
 const options = [
     { value: 1, label: 'Raven', image: 'https://static.wixstatic.com/media/4fb926_f0a8461680e54e1cb39928ca1d09ea2c~mv2.png' },
@@ -9,9 +10,9 @@ const options = [
     { value: 3, label: 'Bat Lady', image: 'https://static.wixstatic.com/media/4fb926_e3819bbf778d4d248e915270edc6f4c0~mv2.png' },
     { value: 4, label: 'Brake Line', image: 'https://static.wixstatic.com/media/4fb926_d99d1a69d05148bea106d95edd6994d1~mv2.png ' },
     { value: 5, label: 'Danger Inside', image: 'https://static.wixstatic.com/media/4fb926_fb9ea3dfd569455ea18424dc4b9bc99d~mv2.png' },
-    { value: 6, label: 'Embers', image: 'https://static.wixstatic.com/media/4fb926_ccdcacc2f9d549fe9d349bd8d4ae29df~mv2.png' },
-    { value: 7, label: 'Spider ID', image: 'https://static.wixstatic.com/media/4fb926_3277dcb3471e43adaa327a945c3ec498~mv2.png' },
-    { value: 8, label: 'Fluid', image: 'https://static.wixstatic.com/media/4fb926_883e65359e294ee799bd65b96b52e2aa~mv2.png' },
+    { value: 6, label: 'Joker', image: 'https://static.wixstatic.com/media/4fb926_1f75f961d6894d128c2332f3835676c9~mv2.png' },
+    { value: 7, label: 'Madness', image: 'https://static.wixstatic.com/media/4fb926_e6845a9b7698432eb0209c784579fc91~mv2.png' },
+    { value: 8, label: 'Desert', image: 'https://static.wixstatic.com/media/4fb926_6e1ecacc334c4b9982188cf2ed282d6b~mv2.png' },
     { value: 9, label: 'Hot Rods', image: 'https://static.wixstatic.com/media/4fb926_b719c9eb114149049040504ed2e12f47~mv2.png' },
     { value: 10, label: 'Mayan', image: 'https://static.wixstatic.com/media/4fb926_426e2d02ec1c496f95b92d884f55afee~mv2.png' },
     { value: 11, label: 'Sea Breeze', image: 'https://static.wixstatic.com/media/4fb926_01a0d1ff62384a9f8583d115ee73b5d9~mv2.png' },
@@ -63,16 +64,25 @@ const Configurator = () => {
                         components={{ Option }}
                         isSearchable={false}
                         getOptionLabel={(option) => option.label}
-                        getOptionValue={(option) => option.value}                        
+                        getOptionValue={(option) => option.value}
                     />
                     <div className='picker-color'>
-                    <div className='configurator__section__title'>
-                    Change Vehicle Color
+                        <div className='configurator__section__title'>
+                            Change Vehicle Color
+                        </div>
+                        <ColorPicker />
+                    </div>
                 </div>
-                         <ColorPicker />
-                         </div>
-                </div>                        
-                   
+
+
+                <div className='texture-images'>
+                    {TexturePaths.map((v) => {
+                        return (
+                            <img key={v.overlay} src={v.path} id={`overlay${v.overlay}`} />
+                        )
+                    })}
+                </div>
+
             </div>
         </>
     );

@@ -1,63 +1,80 @@
-import React, { useEffect } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { useSnapshot } from "valtio";
+import React, { useRef } from 'react'
+import { useSnapshot } from "valtio"
+
+import { useGLTF } from '@react-three/drei'
 import { useCustomization } from '../context/Customization';
 import { state } from '../components/ColorPicker';
-import * as THREE from 'three'; // Import Three.js for blending mode
+
 
 export function GTR(props) {
-  const { overlay } = useCustomization();
-  const snap1 = useSnapshot(state);
-  const { nodes, materials } = useGLTF('/models/GTR.glb');
+  const { nodes, materials } = useGLTF('models/GTR.glb')
+  const { overlay } = useCustomization()
+  const snap1 = useSnapshot(state)
 
-  useEffect(() => {
-    console.log("Effect triggered. Current button:", snap1.current, "Current color:", snap1.base.BaseMtl);
-    
-    const materialNodes = Object.keys(nodes).map((nodeName) => materials[nodeName]);
+  const canvasRef = useRef(document.createElement("canvas"));
+  const textureRef = useRef();
+  const context = useRef(canvasRef.current.getContext("2d"));
+console.log()
 
-    materialNodes.forEach((material) => {
-      if (material && material.color && material.color.equals(new THREE.Color(snap1.base.BaseMtl))) {
-        applyCustomBlending(material); // Apply custom blending mode to every material
+  canvasRef.current.width = 1600;
+  canvasRef.current.height = 1600;
+
+  let ctx = context.current;
+
+  ctx.globalCompositeOperation = "hue";
+
+  const img = document.getElementById(`overlay${overlay}`);
+
+  if (img.complete) {
+    ctx.drawImage(img, 0, 0);
+    if (snap1.base.BaseMtl !== "none") {
+      if(overlay!==1){
+      ctx.fillStyle = snap1.base.BaseMtl;
+      ctx.fillRect(0, 0, 1600, 1600);
       }
-    });
-  }, [snap1.base.BaseMtl, nodes, materials]);
+    }
 
-  const applyCustomBlending = (material) => {
-    // Set the blending mode to Hue
-    material.blending = THREE.CustomBlending;
-    material.blendEquation = THREE.AddEquation;
-    material.blendSrc = THREE.SrcAlphaFactor;
-    material.blendDst = THREE.OneMinusSrcAlphaFactor;
-    material.blendSrcAlpha = THREE.SrcAlphaFactor;
-    material.blendDstAlpha = THREE.OneMinusSrcAlphaFactor;
-    material.blendEquationAlpha = THREE.AddEquation;
-    material.blendMode = THREE.ScreenBlending; // Set blending mode to Hue
-    material.depthWrite = false;
-  };
+
+    if (textureRef.current) {
+      textureRef.current.needsUpdate = true;
+    }
+  }
+
+  else {
+    img.onload = function () {
+      ctx.drawImage(img, 0, 0);
+      if (snap1.base.BaseMtl !== "none") {
+        if(overlay!==1){
+        ctx.fillStyle = snap1.base.BaseMtl;
+        ctx.fillRect(0, 0, 1600, 1600);
+        }
+      }
+      
+
+
+      if (textureRef.current) {
+        textureRef.current.needsUpdate = true;
+      }
+    }
+  }
+
+
 
   return (
     <group {...props} dispose={null}>
-      
-      <mesh geometry={nodes.Body.geometry} material={materials.BaseMtl} material-color={snap1.base.BaseMtl} visible={overlay === 1}/>
-      <mesh geometry={nodes.Body001.geometry} material={materials.Slaughter} material-color={snap1.base.BaseMtl} visible={overlay === 2}/>
-      <mesh geometry={nodes.Body002.geometry} material={materials.BatLady} material-color={snap1.base.BaseMtl} visible={overlay === 3}/>
-      <mesh geometry={nodes.Body003.geometry} material={materials.BrakeLine} material-color={snap1.base.BaseMtl} visible={overlay === 4}/>
-      <mesh geometry={nodes.Body004.geometry} material={materials.Danger} material-color={snap1.base.BaseMtl} visible={overlay === 5}/>
-      <mesh geometry={nodes.Body005.geometry} material={materials.Embers} material-color={snap1.base.BaseMtl} visible={overlay === 6}/>
-      <mesh geometry={nodes.Body006.geometry} material={materials.SpiderID} material-color={snap1.base.BaseMtl} visible={overlay === 7}/>
-      <mesh geometry={nodes.Body007.geometry} material={materials.Fluid} material-color={snap1.base.BaseMtl} visible={overlay === 8}/>
-      <mesh geometry={nodes.Body008.geometry} material={materials.HotRods} material-color={snap1.base.BaseMtl} visible={overlay === 9}/>
-      <mesh geometry={nodes.Body009.geometry} material={materials.Mayan} material-color={snap1.base.BaseMtl} visible={overlay === 10}/>
-      <mesh geometry={nodes.Body010.geometry} material={materials.SeaBreeze} material-color={snap1.base.BaseMtl} visible={overlay === 11}/>
-      <mesh geometry={nodes.Body011.geometry} material={materials.ShapeShifter} material-color={snap1.base.BaseMtl} visible={overlay === 12}/>
-      <mesh geometry={nodes.Body012.geometry} material={materials.Silk} material-color={snap1.base.BaseMtl} visible={overlay === 13}/>
-      <mesh geometry={nodes.Body013.geometry} material={materials.SnakeSkin} material-color={snap1.base.BaseMtl} visible={overlay === 14}/>
-      <mesh geometry={nodes.Body014.geometry} material={materials.Flare} material-color={snap1.base.BaseMtl} visible={overlay === 15}/>
-      <mesh geometry={nodes.Body015.geometry} material={materials.Dominator} material-color={snap1.base.BaseMtl} visible={overlay === 16}/>
-      <mesh geometry={nodes.Body016.geometry} material={materials.TopGun} material-color={snap1.base.BaseMtl} visible={overlay === 17}/>
-      <mesh geometry={nodes.Body017.geometry} material={materials.Explosion} material-color={snap1.base.BaseMtl} visible={overlay === 18}/>
-      <mesh geometry={nodes.Body018.geometry} material={materials.WildWest} material-color={snap1.base.BaseMtl} visible={overlay === 19}/>
-      <mesh geometry={nodes.Body019.geometry} material={materials.Zombie} material-color={snap1.base.BaseMtl} visible={overlay === 20}/>
+      <mesh geometry={nodes.Body.geometry}>
+        <meshStandardMaterial {...materials.BaseMtl} color={overlay==1 || overlay==13 ? (snap1.base.BaseMtl!=="none" ? snap1.base.BaseMtl : 0xffffff) : 0xffffff}>
+          <canvasTexture
+            flipY={false}
+            wrapS={1000}
+            wrapT={1000}
+            colorSpace='srgb'
+            ref={textureRef}
+            attach="map"
+            image={canvasRef.current}
+          />
+        </meshStandardMaterial>
+      </mesh>
       <mesh geometry={nodes.body_Black_colour001_0.geometry} material={materials['Black_colour.001']} />
       <mesh geometry={nodes.body_Black_colour001_0001.geometry} material={materials['Black_colour.001']} />
       <mesh geometry={nodes.body_Black_colour001_0002.geometry} material={materials['Black_colour.001']} />
