@@ -152,7 +152,7 @@ body {
     flex-shrink: 0;
     border-radius: 50%;
     /* background: #000; */
-    background-image: url('https://static.wixstatic.com/media/4fb926_88ed54b0addf498f93167cf4e1966db8~mv2.png');
+    background-image: url('/options/wraphx.png');
     background-size: 235px;
     background-repeat: no-repeat;
     background-position: center;
@@ -553,7 +553,7 @@ body {
         flex-shrink: 0;
         border-radius: 50%;
         /* background: #000; */
-        background-image: url('https://static.wixstatic.com/media/4fb926_88ed54b0addf498f93167cf4e1966db8~mv2.png');
+        background-image: url('/options/wraphx.png');
         background-size: 200px;
         background-repeat: no-repeat;
         background-position: center;

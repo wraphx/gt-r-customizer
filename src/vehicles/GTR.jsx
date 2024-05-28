@@ -99,4 +99,4 @@ console.log()
   );
 }
 
-useGLTF.preload('/models/GTR.glb');
+useGLTF.preload('/GTR.glb');
