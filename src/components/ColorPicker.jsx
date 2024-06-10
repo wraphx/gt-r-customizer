@@ -1,6 +1,7 @@
 import React from 'react';
 import { proxy, useSnapshot } from 'valtio';
 import '../App.css';
+import RedirectButton from './RedirectButton';
 
 // Define state object with BaseMtl property initialized to white
 export const state = proxy({
@@ -35,6 +36,9 @@ const ColorPicker = () => {
       </div>
       <div className='btn-space'>
         <button className='glowing-btn' onClick={() => updateBaseMtl("none")}>Reset To Original Color</button>
+      </div>
+      <div className='buy-now'>
+      <RedirectButton />
       </div>
     </>
   );
