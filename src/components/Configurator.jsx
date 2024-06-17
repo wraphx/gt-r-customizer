@@ -25,6 +25,12 @@ const options = [
     { value: 18, label: 'Water Explosion', image: '/options/explosion.png' },
     { value: 19, label: 'Wild West', image: '/options/wildwest.png' },
     { value: 20, label: 'Zombie', image: '/options/zombie.png' },
+    { value: 21, label: 'Linearock', image: '/options/linea.png' },
+    { value: 22, label: 'Euclids Theorem', image: '/options/euclid.png' },
+    { value: 23, label: 'Pantone Zebra', image: '/options/pantone.png' },
+    { value: 24, label: 'Heavenly Peace', image: '/options/heavenly.png' },
+    { value: 25, label: 'Liquid Army', image: '/options/army.png' },
+    
 ];
 
 const Option = ({ data, ...props }) => (

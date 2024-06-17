@@ -79,7 +79,26 @@ var TexturePaths = [
         overlay: 20,
         path: "textures/Zombie Base Color.png"
     },
-
+    {
+        overlay: 21,
+        path: "textures/Linearock Base Color.png"
+    },
+    {
+        overlay: 22,
+        path: "textures/Euclid Base Color.png"
+    },
+    {
+        overlay: 23,
+        path: "textures/Pantone Base Color.png"
+    },
+    {
+        overlay: 24,
+        path: "textures/Heavenly Base Color.png"
+    },
+    {
+        overlay: 25,
+        path: "textures/LiquidArmy Base Color.png"
+    },
 ]
 
 
