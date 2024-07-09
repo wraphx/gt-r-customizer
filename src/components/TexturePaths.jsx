@@ -99,6 +99,27 @@ var TexturePaths = [
         overlay: 25,
         path: "textures/LiquidArmy Base Color.png"
     },
+    {
+        overlay: 26,
+        path: "textures/Tribal Base Color.png"
+    },
+    {
+        overlay: 27,
+        path: "textures/Ribs Base Color.png"
+    },
+    {
+        overlay: 28,
+        path: "textures/Fantastic Base Color.png"
+    },
+
+    {
+        overlay: 29,
+        path: "textures/Geometric Base Color.png"
+    },
+    {
+        overlay: 30,
+        path: "textures/Lagoon Base Color.png"
+    },
 ]
 
 

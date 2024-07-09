@@ -31,6 +31,11 @@ const options = [
     { value: 23, label: 'Pantone Zebra', image: '/options/pantone.png' },
     { value: 24, label: 'Heavenly Peace', image: '/options/heavenly.png' },
     { value: 25, label: 'Liquid Army', image: '/options/army.png' },
+    { value: 26, label: 'Tribal', image: '/options/tribal.png' },
+    { value: 27, label: 'Ribs', image: '/options/ribs.png' },
+    { value: 28, label: 'Fantastic Cloud', image: '/options/cloud.png' },
+    { value: 29, label: 'Geometric Palette', image: '/options/geometric.png' },
+    { value: 30, label: 'Lagoon Cracks', image: '/options/lagoon.png' },
 ];
 
 const reversedOptions = [...options].reverse();
@@ -45,7 +50,7 @@ const Option = ({ data, ...props }) => (
         {data.label}
     </components.Option>
 );
- 
+
 const Configurator = () => {
     const { overlay, setOverlay } = useCustomization();
     const [selectedOption, setSelectedOption] = useState(null);
