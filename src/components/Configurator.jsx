@@ -36,6 +36,11 @@ const options = [
     { value: 28, label: 'Fantastic Cloud', image: '/options/cloud.png' },
     { value: 29, label: 'Geometric Palette', image: '/options/geometric.png' },
     { value: 30, label: 'Lagoon Cracks', image: '/options/lagoon.png' },
+    { value: 31, label: 'Black Panther', image: '/options/panther.png' },
+    { value: 32, label: 'Venom', image: '/options/venom.png' },
+    { value: 33, label: 'Neon Brush', image: '/options/neon.png' },
+    { value: 34, label: 'Kurosu Warrior', image: '/options/warrior.png' },
+    { value: 35, label: 'Destroyed Marble', image: '/options/marble.png' },
 ];
 
 const reversedOptions = [...options].reverse();
